@@ -1,19 +1,19 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: myapp-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  ingressClassName: nginx
-  rules:
-  - host: "myapp.gurkan.com"
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: myapp-service
-            port:
-              number: 80
+apiVersion: networking.k8s.io/v1 
+kind: Ingress 
+metadata: 
+  name: {{ .Values.app.name}}-ingress 
+  annotations: 
+    nginx.ingress.kubernetes.io/rewrite-target: / 
+spec: 
+  ingressClassName: nginx 
+  rules: 
+  - host: {{ .Values.app.host}} 
+    http: 
+      paths: 
+      - path: / 
+        pathType: Prefix 
+        backend: 
+          service: 
+            name: {{ .Values.app.name}}-service 
+            port: 
+              number: {{ .Values.app.port}}
